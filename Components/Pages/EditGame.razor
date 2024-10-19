@@ -1,15 +1,17 @@
 ﻿@page "/editgame"
+@page "/editgame/{id:int}"
+
 @inject GenresClient GenresClient
 @inject GamesClient GamesClient
 @inject NavigationManager NavigationManager
 
 
-<PageTitle>New game</PageTitle>
-<h3>New Game</h3>
+<PageTitle>@title</PageTitle>
+<h3>@title</h3>
 
 
 
-@if (genres is null)
+@if (genres is null || game is null)
 {
 	<p><em>Loading...</em></p>
 } 
@@ -60,15 +62,17 @@ else
 }
 
 @code {
+
+	//initially null, we need to specify it is a parameter
+	[Parameter]
+	public int? Id {get; set;}
+
 	[SupplyParameterFromForm]
-	private GameDetails game {get; set;} = new()
-	{
-		Name = string.Empty,
-		ReleaseDate = DateOnly.FromDateTime(DateTime.UtcNow)
-	};
-	
+	private GameDetails? game {get; set;}
 
 	private Genre[]? genres;
+
+	private string title = string.Empty;
 
 
 	protected override void OnInitialized()
@@ -78,7 +82,40 @@ else
 
 	private void HandleSubmit()
 	{
-		GamesClient.AddGame(game);
+		ArgumentNullException.ThrowIfNull(game);
+		if ( Id is null)
+		{
+			GamesClient.AddGame(game);
+		}
+		else
+		{
+			game.Id = Id.Value;
+			GamesClient.UpdateGame(game);
+		}
 		NavigationManager.NavigateTo("/");
+	}
+
+	protected override void OnParametersSet()
+	{
+		if (game is not null)
+		{
+			return;
+		}
+		//this would work dependin if the route has id or not
+		if (Id is not null)
+		{
+			game = GamesClient.GetGame(Id.Value);
+			title = $"Edit {game.Name}";
+		} else
+		{
+			//Here we construct the empty fields so copy the old logic here
+			game = new()
+			{
+				Name = string.Empty,
+				ReleaseDate = DateOnly.FromDateTime(DateTime.UtcNow)
+			};
+
+			title = "New Game";
+		}
 	}
 }
