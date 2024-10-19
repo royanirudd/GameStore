@@ -1,0 +1,84 @@
+﻿@page "/editgame"
+@inject GenresClient GenresClient
+@inject GamesClient GamesClient
+@inject NavigationManager NavigationManager
+
+
+<PageTitle>New game</PageTitle>
+<h3>New Game</h3>
+
+
+
+@if (genres is null)
+{
+	<p><em>Loading...</em></p>
+} 
+else
+{
+<div class="row">
+<div class="col-md-4">
+<EditForm Model="@game" FormName="editGame" OnValidSubmit="HandleSubmit">
+<DataAnnotationsValidator />
+<div class="mb-3">
+  <div class="form-group">
+    <label for="name" class="form-label">Name:</label>
+    <InputText class="form-control" @bind-Value="game.Name" id="name"  />
+    <ValidationMessage For="() => game.Name" />
+    </div>
+  </div>
+  <div class="mb-3">
+  <div class="form-group">
+    <label for="genre" class="form-label">Genre:</label>
+    <InputSelect class="form-select" @bind-Value="game.GenreId" id="genre" >
+    <ValidationMessage For="() => game.GenreId" />
+    <option value="">Select a genre</option>
+	@foreach (var genre in genres)
+	{
+		<option value="@genre.Id">@genre.Name</option>
+	}
+    </InputSelect>
+    </div>
+  </div>
+<div class="mb-3">
+  <div class="form-group">
+    <label for="price" class="form-label">Price:</label>
+    <InputNumber class="form-control" @bind-Value="game.Price" id="price"  />
+    <ValidationMessage For="() => game.Price" />
+    </div>
+  </div>
+<div class="mb-3">
+  <div class="form-group">
+    <label for="releaseDate" class="form-label">Release Date:</label>
+    <InputDate class="form-control" @bind-Value="game.ReleaseDate" id="releaseDate"  />
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Confirm</button>
+  <a role="button" class="btn btn-secondary" href="/">Cancel</a>
+</EditForm>
+</div>
+</div>
+}
+
+@code {
+	[SupplyParameterFromForm]
+	private GameDetails game {get; set;} = new()
+	{
+		Name = string.Empty,
+		ReleaseDate = DateOnly.FromDateTime(DateTime.UtcNow)
+	};
+	
+
+	private Genre[]? genres;
+
+
+	protected override void OnInitialized()
+	{
+		genres = GenresClient.GetGenres();
+	}
+
+	private void HandleSubmit()
+	{
+		GamesClient.AddGame(game);
+		NavigationManager.NavigateTo("/");
+	}
+}

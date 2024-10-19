@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "FP+ztsKVo0+8bQmjOnXq3VXKySkFLqyUfl3QZLw7cfE=",
+  "Source": "GameStore",
+  "BasePath": "_content/GameStore",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "GameStore/wwwroot",
+      "Source": "GameStore",
+      "ContentRoot": "/mnt/c/Users/AnirudhRoy/Desktop/Code/C#/GameStore/wwwroot/",
+      "BasePath": "_content/GameStore",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/mnt/c/Users/AnirudhRoy/Desktop/Code/C#/GameStore/obj/Debug/net8.0/scopedcss/bundle/GameStore.styles.css",
+      "SourceId": "GameStore",
+      "SourceType": "Computed",
+      "ContentRoot": "/mnt/c/Users/AnirudhRoy/Desktop/Code/C#/GameStore/obj/Debug/net8.0/scopedcss/bundle/",
+      "BasePath": "_content/GameStore",
+      "RelativePath": "GameStore.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/mnt/c/Users/AnirudhRoy/Desktop/Code/C#/GameStore/obj/Debug/net8.0/scopedcss/bundle/GameStore.styles.css"
+    },
+    {
+      "Identity": "/mnt/c/Users/AnirudhRoy/Desktop/Code/C#/GameStore/obj/Debug/net8.0/scopedcss/projectbundle/GameStore.bundle.scp.css",
+      "SourceId": "GameStore",
+      "SourceType": "Computed",
+      "ContentRoot": "/mnt/c/Users/AnirudhRoy/Desktop/Code/C#/GameStore/obj/Debug/net8.0/scopedcss/projectbundle/",
+      "BasePath": "_content/GameStore",
+      "RelativePath": "GameStore.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/mnt/c/Users/AnirudhRoy/Desktop/Code/C#/GameStore/obj/Debug/net8.0/scopedcss/projectbundle/GameStore.bundle.scp.css"
+    },
+    {
+      "Identity": "/mnt/c/Users/AnirudhRoy/Desktop/Code/C#/GameStore/wwwroot/app.css",
+      "SourceId": "GameStore",
+      "SourceType": "Discovered",
+      "ContentRoot": "/mnt/c/Users/AnirudhRoy/Desktop/Code/C#/GameStore/wwwroot/",
+      "BasePath": "_content/GameStore",
+      "RelativePath": "app.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/app.css"
+    }
+  ]
+}
