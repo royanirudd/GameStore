@@ -117,4 +117,11 @@ public class GamesClient
         //the above is a GameSummary object but we need genreid
         return game;
     }
+
+    public void DeleteGameById(int id)
+    {
+        GameSummary? game = GetGameSummaryById(id);
+        ArgumentNullException.ThrowIfNull(game);
+        games.Remove(game);
+    }
 }

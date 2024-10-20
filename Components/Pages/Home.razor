@@ -1,12 +1,13 @@
 ﻿@page "/"
 @inject GamesClient Client
+@inject NavigationManager NavigationManager
 
 
 
 <PageTitle>Game Catalogue</PageTitle>
 
 <div class="mt-2">
-<a class="btn btn-primary role="button" href="/editgame" >New Game</a>
+<a class="btn btn-primary" role="button" href="/editgame" >New Game</a>
 </div>
 
 @if (games is null)
@@ -32,7 +33,11 @@ else
 				<td>@game.Genre</td>
 				<td class="text-end">$ @game.Price.ToString()</td>
 				<td>@game.ReleaseDate</td>
-				<td>Update and Delete Later on</td>
+				<td>
+					<a class="btn btn-warning" role="button" href="/editgame/@game.Id">Edit</a>
+					<button class="btn btn-danger" @onclick="() => DeleteGame(game)">Delete</button>
+				</td>
+
 			</tr>
 			}	
 		</tbody>
@@ -48,4 +53,12 @@ else
 	{
 		games = Client.GetGames();
 	}
+
+	    private void DeleteGame(GameSummary game)
+	    {
+		Client.DeleteGameById(game.Id);
+		games = Client.GetGames(); //Refresh the games list after deletion
+		Console.WriteLine($"Deleted game with ID: {game.Id}"); // For debugging
+		NavigationManager.Refresh();
+	    }
 }
