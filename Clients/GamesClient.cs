@@ -121,7 +121,6 @@ public class GamesClient
     public void DeleteGameById(int id)
     {
         GameSummary? game = GetGameSummaryById(id);
-        ArgumentNullException.ThrowIfNull(game);
         games.Remove(game);
     }
 }
